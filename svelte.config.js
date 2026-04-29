@@ -17,7 +17,7 @@ const config = {
 		}),
 
 		paths: {
-			base: dev ? '' : '/NOME-REPOSITORY'
+			base: dev ? '' : '/Portfolio'
 		}
 	}
 };
