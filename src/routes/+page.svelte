@@ -1,5 +1,6 @@
 <script>
 import { currentLang, t } from '$lib/index.js';
+import { base } from '$app/paths';
 
   function cambiaLingua() {
     currentLang.update(l => {
@@ -90,7 +91,7 @@ import { currentLang, t } from '$lib/index.js';
           target="_blank"
           rel="noreferrer"
         >
-          <img src="/github.svg" alt="Github" />
+          <img src="{base}/github.svg" alt="Github" />
         </a>
       </div>
 
@@ -100,7 +101,7 @@ import { currentLang, t } from '$lib/index.js';
           target="_blank"
           rel="noreferrer"
         >
-          <img src="/instagram.svg" alt="Instagram" />
+          <img src="{base}/instagram.svg" alt="Instagram" />
         </a>
       </div>
 
@@ -110,7 +111,7 @@ import { currentLang, t } from '$lib/index.js';
           target="_blank"
           rel="noreferrer"
         >
-          <img src="/tiktok.svg" alt="TikTok" />
+          <img src="{base}/tiktok.svg" alt="TikTok" />
         </a>
       </div>
 
