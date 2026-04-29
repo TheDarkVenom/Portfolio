@@ -87,7 +87,7 @@ import { base } from '$app/paths';
     <div class="social-sidebar">
       <div class="social-icon">
         <a
-          href="https://github.com/IL_TUO_USERNAME"
+          href="https://github.com/TheDarkVenom"
           target="_blank"
           rel="noreferrer"
         >
