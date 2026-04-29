@@ -26,7 +26,7 @@ import { base } from '$app/paths';
 </header>
 
 <section class="hero">
-  <img src="URL_TUA_IMMAGINE" alt="Spring Collection" class="hero-img" />
+  <img src="{base}/front-scuola.jpg" alt="Spring Collection" class="hero-img" />
   
   <div class="hero-overlay">
     <div class="hero-content">

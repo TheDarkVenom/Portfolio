@@ -1,8 +1,13 @@
 <script>
-import { base } from '$app/paths';
+  import { base } from "$app/paths";
+
   const navLinks = [
-    "NOVITÀ", "REGALI", "PENNE DI LUSSO", "RICARICHE E CANCELLERIA", 
-    "BORSE", "BAGAGLI DA VIAGGIO", "ACCESSORI", "OROLOGI", "CUFFIE", "FRAGRANZE", "SCOPRI"
+    "HOME",
+    "ITALIANO",
+    "INGLESE",
+    "TELECOMUNICAZIONI",
+    "STORIA",
+    "INFORMATICA",
   ];
 </script>
 
@@ -10,27 +15,34 @@ import { base } from '$app/paths';
   <div class="top-bar">
     <span class="lang">IT</span>
     <h1 class="logo">2023 - 2024</h1>
+
     <div class="icons">
-      <span class="icon-placeholder">🔍</span> 
-      <span class="icon-placeholder">👤</span> 
-      <span class="icon-placeholder">🤍</span> 
+      <span class="icon-placeholder">🔍</span>
+      <span class="icon-placeholder">👤</span>
+      <span class="icon-placeholder">🤍</span>
       <span class="icon-placeholder">🛍️</span>
     </div>
   </div>
-  
+
   <nav class="nav-links">
     {#each navLinks as link}
-      <a href="{base}/">{link}</a>
+      <a
+        href={link === "HOME"
+          ? `${base}/`
+          : `${base}/${link.toLowerCase().replace(/ /g, "-")}`}
+      >
+        {link}
+      </a>
     {/each}
   </nav>
 </header>
-
-<section class="hero">
-  <img src="URL_TUA_IMMAGINE" alt="Spring Collection" class="hero-img" />
-  
+<section
+  class="hero"
+  style="background-image: url('{base}/front-scuola.jpeg');"
+>
   <div class="hero-overlay">
     <div class="hero-content">
-      <h2 class="hero-title">SELEZIONE PRIMAVERILE</h2>
+      <h2 class="hero-title">5 info</h2>
       <p class="hero-subtitle">Celebriamo la nuova stagione</p>
       <div class="cta-group">
         <button class="btn">SCOPRI LA COLLEZIONE</button>
@@ -38,13 +50,24 @@ import { base } from '$app/paths';
       </div>
     </div>
 
-    <div class="media-controls">
-        <button class="control-btn">
-            <span>🔇</span>
-        </button>
-        <button class="control-btn">
-            <span>⏸</span>
-        </button>
+    <div class="mattanza">
+      <h2 class="hero-title">Italiano</h2>
+      <p class="hero-subtitle">
+        Dal silenzio sulla mafia al silenzio della mafia
+      </p>
+      <div class="cta-group">
+        <img src="{base}/lamattanza.jpg" alt="La Mattanza" />
+      </div>
+      <div>
+        <h2 class="hero-title">La Mattanza</h2>
+        <p class="hero-subtitle">
+          Il libro denuncia il silenzio, la paura e le complicità che hanno
+          favorito la mafia, ma celebra anche il coraggio di chi ha sacrificato
+          la propria vita per la giustizia. La Mattanza è quindi una riflessione
+          sulla violenza mafiosa e sull’importanza di non dimenticare figure
+          come Falcone e Borsellino.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -52,7 +75,7 @@ import { base } from '$app/paths';
 <style>
   :global(body) {
     margin: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -106,7 +129,9 @@ import { base } from '$app/paths';
     scrollbar-width: none; /* Nasconde scrollbar su Firefox */
   }
 
-  .nav-links::-webkit-scrollbar { display: none; } /* Nasconde scrollbar su Chrome/Safari */
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  } /* Nasconde scrollbar su Chrome/Safari */
 
   .nav-links a {
     text-decoration: none;
@@ -118,32 +143,37 @@ import { base } from '$app/paths';
   }
 
   .hero {
-    position: relative;
-    height: 85vh;
+    height: calc(85vh - 15px);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     width: 100%;
-    background: #000;
-  }
-
-  .hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   .hero-overlay {
-    position: absolute;
-    inset: 0;
+    height: 100%;
+    width: 100%;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+
     /* Gradiente nero dal basso per leggere bene il testo */
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 30%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 30%);
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    padding: 50px;
+    align-items: start;
+    flex-direction: column;
   }
 
   .hero-content {
     color: white;
     max-width: 600px;
+    padding: 200px 0px  0px 100px;
+  }
+
+  .mattanza {
+    color: white;
+    padding: 200px 0px  0px 100px;
   }
 
   .hero-title {
@@ -181,23 +211,5 @@ import { base } from '$app/paths';
   .btn:hover {
     background: white;
     color: black;
-  }
-
-  .media-controls {
-    display: flex;
-    gap: 15px;
-  }
-
-  .control-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   }
 </style>
