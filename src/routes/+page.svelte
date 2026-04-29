@@ -58,7 +58,7 @@ import { base } from '$app/paths';
       <ul>
         {#each navItems as item}
 
-          <li><a href="/{item.toLowerCase().replace(/ /g, '-')}">{item}</a></li>
+          <li><a href="{base}/{item.toLowerCase().replace(/ /g, '-')}">{item}</a></li>
 
         {/each}
         <li class="search-icon">

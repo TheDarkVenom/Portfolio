@@ -1,4 +1,5 @@
 <script>
+import { base } from '$app/paths';
   const navLinks = [
     "NOVITÀ", "REGALI", "PENNE DI LUSSO", "RICARICHE E CANCELLERIA", 
     "BORSE", "BAGAGLI DA VIAGGIO", "ACCESSORI", "OROLOGI", "CUFFIE", "FRAGRANZE", "SCOPRI"
@@ -19,7 +20,7 @@
   
   <nav class="nav-links">
     {#each navLinks as link}
-      <a href="/">{link}</a>
+      <a href="{base}/">{link}</a>
     {/each}
   </nav>
 </header>
