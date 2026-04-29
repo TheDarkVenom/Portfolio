@@ -9,7 +9,7 @@ import { base } from '$app/paths';
 <header class="header">
   <div class="top-bar">
     <span class="lang">IT</span>
-    <h1 class="logo">MONTBLANC</h1>
+    <h1 class="logo">2023 - 2024</h1>
     <div class="icons">
       <span class="icon-placeholder">🔍</span> 
       <span class="icon-placeholder">👤</span> 
