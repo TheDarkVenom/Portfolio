@@ -1,43 +1,73 @@
 <script>
   import { base } from "$app/paths";
 
+  let heroOverlay;
+
   const navLinks = [
     "HOME",
     "ITALIANO",
-    "INGLESE",
     "TELECOMUNICAZIONI",
-    "STORIA",
     "INFORMATICA",
   ];
 
-  function getSectionLink(link) {
-    if (link === "HOME") return `${base}/`;
-    if (link === "ITALIANO") return "#italiano";
-    return `${base}/${link.toLowerCase().replace(/ /g, "-")}`;
+  function scrollToSection(link) {
+    if (link === "HOME") {
+      window.location.href = `${base}/`;
+      return;
+    }
+
+    const id = link.toLowerCase().replace(/ /g, "-");
+    const section = document.getElementById(id);
+
+    section?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
   }
+
+  const sections = [
+    {
+      id: "italiano",
+      title: "ITALIANO",
+      image: `${base}/lamattanza.jpg`,
+      topic: "LA MATTANZA",
+      text1:
+        "Il libro denuncia il silenzio, la paura e le complicità che hanno favorito la mafia, mostrando una realtà storica dura e concreta.",
+      text2:
+        "È una riflessione sulla violenza mafiosa e sull’importanza di ricordare figure come Falcone e Borsellino.",
+    },
+    {
+      id: "telecomunicazioni",
+      title: "TELECOMUNICAZIONI",
+      image: `${base}/AI.png`,
+      topic: "INTELLIGENZA ARTIFICIALE",
+      text1:
+        "Realizzazione, in collaborazione con due compagni di classe, di un progetto scolastico multimediale sull’Intelligenza Artificiale sviluppato durante il terzo anno come attività pratica per approfondire competenze informatiche, comunicative e organizzative. Il lavoro ha previsto ricerca, analisi e sintesi di contenuti relativi a machine learning, reti neurali, big data, riconoscimento di immagini, vantaggi, svantaggi e implicazioni etiche dell’AI, con successiva progettazione e creazione di una presentazione strutturata ed efficace. Durante il progetto ho contribuito allo sviluppo dei contenuti, alla progettazione grafica e all’esposizione, consolidando capacità di lavoro di squadra, problem solving, public speaking, organizzazione delle informazioni e utilizzo di strumenti digitali per la comunicazione tecnica.",
+    },
+    {
+      id: "informatica",
+      title: "INFORMATICA",
+      image: `${base}/codice-fiscale.png`,
+      topic: "CODICE FISCALE",
+      text1:
+        "Sviluppo di un programma per la generazione automatica del Codice Fiscale italiano realizzato durante il percorso scolastico come esercitazione pratica delle competenze informatiche. Il progetto ha previsto l’analisi delle regole ufficiali di costruzione del codice fiscale, l’elaborazione di dati anagrafici e l’implementazione della logica algoritmica necessaria per produrre un risultato corretto.",
+    },
+  ];
 </script>
 
 <header class="header">
   <div class="top-bar">
     <span class="lang">IT</span>
-
     <h1 class="logo">2023 - 2024</h1>
-
-    <div class="icons">
-      <span class="icon-placeholder">🔍</span>
-      <span class="icon-placeholder">👤</span>
-      <span class="icon-placeholder">🤍</span>
-      <span class="icon-placeholder">🛍️</span>
-    </div>
   </div>
 
   <nav class="nav-links">
-    {#each navLinks as link}
-      <a href={getSectionLink(link)}>
-        {link}
-      </a>
-    {/each}
-  </nav>
+  {#each navLinks as link}
+    <button on:click={() => scrollToSection(link)}>
+      {link}
+    </button>
+  {/each}
+</nav>
 </header>
 
 <main>
@@ -45,252 +75,295 @@
     class="hero"
     style="background-image: url('{base}/front-scuola.jpeg');"
   >
-    <div class="hero-overlay">
-      <section class="hero-content">
-        <h2 class="hero-title">5 INFO</h2>
-        <p class="hero-subtitle">Celebriamo la nuova stagione</p>
+    <div class="hero-overlay" bind:this={heroOverlay}>
+      {#each sections as section}
+        <section id={section.id} class="subject-section">
+          <article class="subject-card image-card">
+            <h2>{section.title}</h2>
 
-        <div class="cta-group">
-          <button class="btn">SCOPRI LA COLLEZIONE</button>
-          <button class="btn">ESPLORA BORSE</button>
-        </div>
-      </section>
+            <img
+              class="subject-img"
+              src={section.image}
+              alt={section.topic}
+            />
+          </article>
 
-      <!-- SEZIONE ITALIANO -->
-      <section id="italiano" class="mattanza-section">
-        <article class="mattanza-card mattanza-image-box">
-          <h2 class="hero-title section-heading">ITALIANO</h2>
+          <article class="subject-card text-card">
+            <h2>{section.topic}</h2>
 
-          <p class="hero-subtitle">
-            Dal silenzio sulla mafia al silenzio della mafia
-          </p>
+            <p>{section.text1}</p>
 
-          <img
-            class="mattanza-img"
-            src="{base}/lamattanza.jpg"
-            alt="Copertina del libro La Mattanza"
-          />
-        </article>
-
-        <article class="mattanza-card mattanza-text-box">
-          <h2 class="hero-title section-heading">LA MATTANZA</h2>
-
-          <p class="hero-subtitle">
-            Il libro denuncia il silenzio, la paura e le complicità che hanno
-            favorito la mafia, ma celebra anche il coraggio di chi ha
-            sacrificato la propria vita per la giustizia.
-          </p>
-
-          <p class="hero-subtitle">
-            <strong>La Mattanza</strong> è una riflessione sulla violenza
-            mafiosa e sull’importanza di non dimenticare figure come Falcone e
-            Borsellino.
-          </p>
-        </article>
-      </section>
+            {#if section.text2}
+              <p>{section.text2}</p>
+            {/if}
+          </article>
+        </section>
+      {/each}
     </div>
   </section>
 </main>
 
 <style>
   :global(html) {
-    scroll-behavior: smooth;
-  }
+  scroll-behavior: smooth;
+}
 
-  :global(body) {
-    margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    background-color: #000;
-  }
+:global(body) {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #000;
+  color: white;
+}
 
-  .header {
-    background: white;
-    padding-top: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
+/* HEADER */
+.header {
+  background: white;
+  padding-top: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-  .top-bar {
-    position: relative;
-    height: 50px;
-    padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.top-bar {
+  height: 55px;
+  padding: 0 45px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .lang {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1px;
+.lang,
+.logo,
+.nav-links button {
+  color: black;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  white-space: nowrap;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-links button:hover {
+  border-bottom: 1px solid black;
+  opacity: 0.7;
+}
+.lang {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+}
+
+.icons {
+  display: flex;
+  gap: 18px;
+  font-size: 17px;
+  cursor: pointer;
+  align-items: center;
+}
+
+/* NAV */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  padding: 18px 40px 22px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-links a {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  white-space: nowrap;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+/* invece di mandare solo al titolo, centra tutta la fascia */
+.nav-links a:hover {
+  border-bottom: 1px solid black;
+  opacity: 0.7;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  height: calc(85vh - 15px);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.hero-overlay {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y proximity;
+  
+  scrollbar-width: none;
+}
+
+.hero-overlay::-webkit-scrollbar {
+  display: none;
+}
+/* SEZIONI */
+.subject-section {
+  display: flex;
+  gap: 55px;
+  padding: 90px 100px;
+  min-height: 85vh;
+  align-items: center;
+  scroll-snap-align: start;
+  
+  /* QUESTO fa arrivare il click alla fascia intera */
+  scroll-margin-top: 120px;
+}
+
+/* CARD BASE */
+.subject-card {
+  padding: 26px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.subject-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* IMMAGINE */
+.image-card {
+  width: 58%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.subject-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+/* TESTO */
+.text-card {
+  width: 42%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.subject-card h2 {
+  margin: 0 0 22px;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.subject-card p {
+  margin: 0 0 18px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* CTA */
+.cta-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 45px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  background: white;
+  color: black;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .top-bar  {
+    padding: 0 20px;
   }
 
   .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 0.4em;
-  }
-
-  .icons {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-
-  .icon-placeholder {
     font-size: 18px;
-    cursor: pointer;
+    letter-spacing: 0.25em;
   }
 
   .nav-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px 40px;
-    overflow-x: auto;
-    scrollbar-width: none;
+    gap: 16px;
+    padding: 16px 20px;
   }
 
-  .nav-links::-webkit-scrollbar {
-    display: none;
-  }
-
-  .nav-links a {
-    color: black;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: opacity 0.3s ease;
-  }
-
-  .nav-links a:hover {
-    opacity: 0.6;
-  }
-
-  .hero {
-    width: 100%;
-    min-height: 100vh;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  .hero-overlay {
-    width: 100%;
-    min-height: 100vh;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.35),
-      rgba(0, 0, 0, 0.85)
-    );
-  }
-
-  .hero-content {
-    max-width: 600px;
-    padding: 180px 0 140px 100px;
-    color: white;
-  }
-
-  .hero-title {
-    margin: 0 0 10px;
-    font-size: 22px;
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .section-heading {
-    min-height: 30px;
-    display: flex;
-    align-items: center;
-  }
-
-  .hero-subtitle {
-    margin: 0 0 25px;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.8;
-    letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .cta-group {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 14px 45px;
-    background: transparent;
-    border: 1px solid white;
-    color: white;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .btn:hover {
-    background: white;
-    color: black;
-  }
-
-  .mattanza-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 60px;
-    padding: 120px 100px;
-    color: white;
-    scroll-margin-top: 130px;
-  }
-
-  .mattanza-card {
-    width: 50%;
-    padding: 35px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(8px);
-    border-radius: 18px;
-    display: flex;
+  .subject-section {
     flex-direction: column;
+    padding: 70px 30px;
+    min-height: auto;
+    gap: 35px;
   }
 
-  .mattanza-img {
+  .image-card,
+  .text-card {
     width: 100%;
-    max-width: 320px;
-    margin-top: 15px;
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
   }
 
-  @media (max-width: 900px) {
-    .hero-content {
-      padding: 120px 30px 80px;
-    }
-
-    .mattanza-section {
-      flex-direction: column;
-      padding: 60px 30px 100px;
-    }
-
-    .mattanza-card {
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .logo {
-      font-size: 18px;
-    }
+  .subject-img {
+    width: 100%;
+    height: auto;
   }
+
+  .subject-card h2 {
+    font-size: 18px;
+  }
+
+  .subject-card p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}
 </style>
