@@ -1,12 +1,12 @@
 <script>
-import { currentLang, t } from '$lib/index.js';
-import { base } from '$app/paths';
+  import { currentLang, t } from "$lib/index.js";
+  import { base } from "$app/paths";
 
   function cambiaLingua() {
-    currentLang.update(l => {
-      if (l === 'it') return 'en';
-      if (l === 'en') return 'jp';
-      return 'it';
+    currentLang.update((l) => {
+      if (l === "it") return "en";
+      if (l === "en") return "jp";
+      return "it";
     });
   }
   const navItems = [
@@ -21,13 +21,16 @@ import { base } from '$app/paths';
   // svelte-ignore non_reactive_update
   let activeFontSize = "M";
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Noto+Sans+JP:wght@100;300&display=swap" rel="stylesheet">
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Cinzel&family=Noto+Sans+JP:wght@100;300&display=swap"
+  rel="stylesheet"
+/>
 <div class="layout">
   <div class="utility-bar">
     <div class="font-controls">
       <span>Font Size:</span>
       {#each ["L", "M", "S"] as size}
-       
         <!-- svelte-ignore event_directive_deprecated -->
         <button
           class:active={activeFontSize === size}
@@ -36,18 +39,18 @@ import { base } from '$app/paths';
           {size}
         </button>
       {/each}
+    </div>
+    <button on:click={cambiaLingua} class="lang-btn">
+      🌐 {$currentLang.toUpperCase()}
+    </button>
+    <button>{$t.home}</button>
+    <button>{$t.settings}</button>
   </div>
-      <button on:click={cambiaLingua} class="lang-btn">
-            🌐 {$currentLang.toUpperCase()}
-      </button>
-        <button>{$t.home}</button>
-        <button>{$t.settings}</button>
-</div>
-
 
   <header>
     <div class="logo-container">
       <div class="logo-box">OWE</div>
+
       <div class="brand-text">
         <h3 class="evolution-stage">ACADEMIC EVOLUTION</h3>
         <p class="details">3rd Grade to 5th Grade (Senior Year)</p>
@@ -57,10 +60,13 @@ import { base } from '$app/paths';
     <nav>
       <ul>
         {#each navItems as item}
-
-          <li><a href="{base}/{item.toLowerCase().replace(/ /g, '-')}">{item}</a></li>
-
+          <li>
+            <a href={`${base}/${item.toLowerCase().replace(/ /g, "-")}`}>
+              {item}
+            </a>
+          </li>
         {/each}
+
         <li class="search-icon">
           <svg
             width="20"
@@ -106,37 +112,42 @@ import { base } from '$app/paths';
       </div>
 
       <div class="social-icon">
-        <a
-          href="https://tiktok.com/@wizyy_07"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href="https://tiktok.com/@wizyy_07" target="_blank" rel="noreferrer">
           <img src="{base}/tiktok.svg" alt="TikTok" />
         </a>
       </div>
-
     </div>
   </main>
 </div>
 
 <style>
-.search-icon {
+  .search-icon {
     cursor: pointer;
     display: flex;
     align-items: center;
+    color: black;
+  }
+
+  .search-icon svg {
+    display: block;
   }
 .details {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    opacity: 0.7;
-  }
+  color: black;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 4px 0 0;
+}
 .evolution-stage {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin: 5px 0;
-    letter-spacing: 4px;
-  }
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: 4px;
+}
+
+
   :global(body) {
     margin: 0;
     padding: 0;
@@ -154,40 +165,81 @@ import { base } from '$app/paths';
     background: white;
   }
 
-  .font-controls button {
-    background: #222;
-    color: white;
-    border: none;
-    margin-left: 5px;
-    padding: 2px 8px;
-    cursor: pointer;
-  }
+.font-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.utility-bar {
+  height: 35px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 50px;
+  gap: 14px;
+  font-size: 12px;
+  background: white;
+  color: black;
+  box-sizing: border-box;
+}
 
-  .font-controls button.active {
-    background: #666;
-  }
+.utility-bar button {
+  color: black;
+}
 
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 50px;
-    border-bottom: 1px solid #eee;
-    background: white;
-  }
+.font-controls span {
+  color: black;
+}
 
-  .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
+.font-controls button {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 2px 8px;
+  cursor: pointer;
+}
 
-  .logo-box {
-    border: 2px solid black;
-    padding: 5px;
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
+.font-controls button.active {
+  background: #666;
+}
+
+header {
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  border-bottom: 1px solid #eee;
+  background: white;
+  color: black;
+  box-sizing: border-box;
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 420px;
+}
+
+.logo-box {
+  width: 52px;
+  height: 38px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: black;
+  background: white;
+  box-sizing: border-box;
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
   .brand-text h1 {
     font-size: 1.1rem;
@@ -200,8 +252,14 @@ import { base } from '$app/paths';
     margin: 0;
     font-weight: bold;
   }
+
   nav a:hover {
-    color: #000; /* Feedback al passaggio del mouse */
+    color: #666;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
   }
   nav ul {
     display: flex;
@@ -209,22 +267,26 @@ import { base } from '$app/paths';
     gap: 25px;
     align-items: center;
     padding: 0;
+    margin: 0;
+  }
+
+  nav li {
+    display: flex;
+    align-items: center;
   }
 
   nav a {
     text-decoration: none;
-    color: #333;
+    color: black;
     font-weight: 600;
     font-size: 0.9rem;
     transition: color 0.2s;
+    white-space: nowrap;
   }
 
   .hero {
     height: 80vh;
-    background:
-      linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-      url("https://www.tnm.jp/modules/rblogs/index.php?controller=attachment&attachment_id=1234")
-        no-repeat center/cover;
+    background: #e6e6e6;
     position: relative;
   }
 
