@@ -5,6 +5,7 @@
 
   const navLinks = [
     "HOME",
+    "STORIA",
     "INFORMATICA",
   ];
 
@@ -24,6 +25,16 @@
   }
 
   const sections = [
+        {
+      id: "storia",
+      title: "STORIA",
+      image: `${base}/lamattanza.jpg`,
+      topic: "LA MATTANZA",
+      text1:
+        "Il libro denuncia il silenzio, la paura e le complicità che hanno favorito la mafia, mostrando una realtà storica dura e concreta.",
+      text2:
+        "È una riflessione sulla violenza mafiosa e sull’importanza di ricordare figure come Falcone e Borsellino.",
+    },
     {
       id: "informatica",
       title: "INFORMATICA",
@@ -39,8 +50,7 @@ Grazie a questo progetto ho potuto mettere in pratica le mie conoscenze di progr
 
 <header class="header">
   <div class="top-bar">
-    <span class="lang">IT</span>
-    <h1 class="logo">2023 - 2024</h1>
+    <h1 class="logo">2025 - 2026</h1>
   </div>
 
   <nav class="nav-links">
@@ -95,60 +105,35 @@ Grazie a questo progetto ho potuto mettere in pratica le mie conoscenze di progr
     color: white;
   }
 
-  /* EFFETTO ANIMAZIONE IMMAGINI */
-  .image-card:hover .subject-img {
-    transform: scale(1.03) translateY(-10px); /* Si ingrandisce e si alza */
-    filter: brightness(1.1);
-  }
-
-  .subject-img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 10px;
-    display: block;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
-  }
-
   /* HEADER */
   .header {
-    background: white;
-    padding-top: 15px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   .top-bar {
-    height: 55px;
-    padding: 0 45px;
+    height: 60px;
+    padding: 0 25px;
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  .lang,
-  .logo,
-  .nav-links button {
+  .lang {
     color: black;
-  }
-
-  .nav-links button {
-    background: none;
-    border: none;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    padding-bottom: 4px;
-    border-bottom: 1px solid transparent;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-
-  .nav-links button:hover {
-    border-bottom: 1px solid black;
-    opacity: 0.7;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    background: #f0f0f0;
+    padding: 8px 14px;
+    border-radius: 20px;
   }
 
   .logo {
@@ -156,25 +141,54 @@ Grazie a questo progetto ho potuto mettere in pratica le mie conoscenze di progr
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
+    color: black;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.35em;
   }
 
-  /* NAV */
   .nav-links {
     display: flex;
     justify-content: center;
-    gap: 28px;
-    padding: 18px 40px 22px;
+    gap: 18px;
+    padding: 12px 40px 18px;
     overflow-x: auto;
     scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar,
+  .hero-overlay::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links button {
+    color: black;
+    background: #eeeeee;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    padding: 10px 18px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .nav-links button:hover {
+    background: black;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  }
+
+  .nav-links button:active {
+    transform: scale(0.96);
   }
 
   /* HERO */
   .hero {
     width: 100%;
-    height: calc(100vh - 110px);
+    height: calc(100vh - 118px);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -239,8 +253,55 @@ Grazie a questo progetto ho potuto mettere in pratica le mie conoscenze di progr
     color: rgba(255, 255, 255, 0.9);
   }
 
+  /* IMMAGINI */
+  .subject-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 14px;
+    display: block;
+    transition:
+      transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      filter 0.3s ease;
+  }
+
+  .image-card:hover .subject-img {
+    transform: scale(1.03) translateY(-10px);
+    filter: brightness(1.1);
+  }
+
   /* MOBILE */
   @media (max-width: 900px) {
+    .top-bar {
+      height: auto;
+      padding: 18px 20px;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .logo {
+      position: static;
+      transform: none;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .nav-links {
+      gap: 10px;
+      padding: 10px 15px 15px;
+      justify-content: flex-start;
+    }
+
+    .nav-links button {
+      font-size: 9px;
+      padding: 9px 14px;
+    }
+
+    .hero {
+      height: calc(100vh - 145px);
+      background-attachment: scroll;
+    }
+
     .subject-section {
       flex-direction: column;
       padding: 70px 20px;
@@ -250,6 +311,18 @@ Grazie a questo progetto ho potuto mettere in pratica le mie conoscenze di progr
     .image-card,
     .text-card {
       width: 100%;
+    }
+
+    .text-card {
+      padding: 25px;
+    }
+
+    .subject-card h2 {
+      font-size: 18px;
+    }
+
+    .subject-card p {
+      font-size: 13px;
     }
   }
 </style>
