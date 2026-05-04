@@ -5,7 +5,6 @@
 
   const navLinks = [
     "HOME",
-    "STORIA",
     "INFORMATICA",
   ];
 
@@ -26,26 +25,12 @@
 
   const sections = [
     {
-      id: "storia",
-      title: "STORIA",
-      image: `${base}/lamattanza.jpg`,
-      topic: "LA MATTANZA",
-      text1:
-        "Il libro denuncia il silenzio, la paura e le complicità che hanno favorito la mafia, mostrando una realtà storica dura e concreta.",
-      text2:
-        "È una riflessione sulla violenza mafiosa e sull’importanza di ricordare figure come Falcone e Borsellino.",
-    },
-    {
       id: "informatica",
       title: "INFORMATICA",
-      image: `${base}/quiz-patente.png`,
-      // Link rimosso qui
-      topic: "Quiz Patente",
-      text1: `Durante il quarto anno di scuola superiore ho sviluppato un progetto in Python dedicato alla simulazione di un quiz per la patente.
-
-Il programma è stato realizzato con Tkinter, una libreria utilizzata per creare interfacce grafiche desktop. L’applicazione presenta domande a risposta Vero/Falso, immagini di supporto, un timer e un sistema per il calcolo degli errori finali.
-
-Attraverso questo progetto ho potuto migliorare le mie competenze nella programmazione grafica, nella gestione degli eventi, nell’organizzazione del codice e nell’utilizzo di librerie esterne come Pillow per la gestione delle immagini. Il quiz è stato progettato per essere intuitivo e interattivo, offrendo un’esperienza simile a quella di un vero esame di guida, con l’obiettivo di aiutare gli utenti a prepararsi in modo efficace.`,
+      image: `${base}/codice-fiscale.png`,
+      topic: "CODICE FISCALE",
+      text1:
+        "Sviluppo di un programma per la generazione automatica del Codice Fiscale italiano realizzato durante il percorso scolastico come esercitazione pratica delle competenze informatiche. Il progetto ha previsto l’analisi delle regole ufficiali di costruzione del codice fiscale, l’elaborazione di dati anagrafici e l’implementazione della logica algoritmica necessaria per produrre un risultato corretto.",
     },
   ];
 </script>
@@ -53,7 +38,7 @@ Attraverso questo progetto ho potuto migliorare le mie competenze nella programm
 <header class="header">
   <div class="top-bar">
     <span class="lang">IT</span>
-    <h1 class="logo">2024 - 2025</h1>
+    <h1 class="logo">2023 - 2024</h1>
   </div>
 
   <nav class="nav-links">
@@ -75,11 +60,11 @@ Attraverso questo progetto ho potuto migliorare le mie competenze nella programm
         <section id={section.id} class="subject-section">
           <article class="subject-card image-card">
             <h2>{section.title}</h2>
-            <!-- Immagine pulita senza tag <a> -->
+            <!-- L'animazione è gestita via CSS sulla classe .subject-img -->
             <img
-                class="subject-img"
-                src={section.image}
-                alt={section.topic}
+              class="subject-img"
+              src={section.image}
+              alt={section.topic}
             />
           </article>
 
@@ -101,26 +86,26 @@ Attraverso questo progetto ho potuto migliorare le mie competenze nella programm
     scroll-behavior: smooth;
   }
 
-  /* Animazione per tutte le immagini */
+  :global(body) {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #000;
+    color: white;
+  }
+
+  /* EFFETTO ANIMAZIONE IMMAGINI */
   .image-card:hover .subject-img {
     transform: scale(1.03) translateY(-10px); /* Si ingrandisce e si alza */
     filter: brightness(1.1);
   }
 
   .subject-img {
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
     width: 100%;
     height: auto;
     object-fit: contain;
     border-radius: 10px;
     display: block;
-  }
-
-  :global(body) {
-    margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #000;
-    color: white;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
   }
 
   /* HEADER */
@@ -141,7 +126,9 @@ Attraverso questo progetto ho potuto migliorare le mie competenze nella programm
     align-items: center;
   }
 
-  .lang, .logo, .nav-links button {
+  .lang,
+  .logo,
+  .nav-links button {
     color: black;
   }
 
@@ -185,7 +172,7 @@ Attraverso questo progetto ho potuto migliorare le mie competenze nella programm
   /* HERO */
   .hero {
     width: 100%;
-    height: calc(85vh - 15px);
+    height: calc(100vh - 110px);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -197,7 +184,6 @@ Attraverso questo progetto ho potuto migliorare le mie competenze nella programm
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    scroll-snap-type: y proximity;
     scrollbar-width: none;
   }
 
@@ -208,12 +194,10 @@ Attraverso questo progetto ho potuto migliorare le mie competenze nella programm
     padding: 90px 100px;
     min-height: 85vh;
     align-items: center;
-    scroll-snap-align: start;
     scroll-margin-top: 120px;
   }
 
   .subject-card {
-    padding: 26px;
     box-sizing: border-box;
   }
 
@@ -233,6 +217,7 @@ Attraverso questo progetto ho potuto migliorare le mie competenze nella programm
     padding: 35px;
     border-radius: 18px;
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .subject-card h2 {
@@ -241,6 +226,7 @@ Attraverso questo progetto ho potuto migliorare le mie competenze nella programm
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+    line-height: 1.3;
   }
 
   .subject-card p {
@@ -251,13 +237,16 @@ Attraverso questo progetto ho potuto migliorare le mie competenze nella programm
     color: rgba(255, 255, 255, 0.9);
   }
 
+  /* MOBILE */
   @media (max-width: 900px) {
     .subject-section {
       flex-direction: column;
-      padding: 70px 30px;
-      gap: 35px;
+      padding: 70px 20px;
+      gap: 30px;
     }
-    .image-card, .text-card {
+
+    .image-card,
+    .text-card {
       width: 100%;
     }
   }
