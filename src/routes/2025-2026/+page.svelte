@@ -1,16 +1,16 @@
 <script>
   import { base } from "$app/paths";
 
-  let heroOverlay;
-
   const navLinks = [
     "HOME",
     "STORIA",
+    "ITALIANO",
     "INFORMATICA",
   ];
 
   function scrollToSection(link) {
     if (link === "HOME") {
+      // Ti rimanda alla pagina principale del sito
       window.location.href = `${base}/`;
       return;
     }
@@ -18,311 +18,233 @@
     const id = link.toLowerCase().replace(/ /g, "-");
     const section = document.getElementById(id);
 
-    section?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
+    if (section) {
+      const headerOffset = 100;
+      const elementPosition = section.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
   }
 
   const sections = [
-        {
+    {
       id: "storia",
       title: "STORIA",
-      image: `${base}/lamattanza.jpg`,
-      topic: "LA MATTANZA",
-      text1:
-        "Il libro denuncia il silenzio, la paura e le complicità che hanno favorito la mafia, mostrando una realtà storica dura e concreta.",
-      text2:
-        "È una riflessione sulla violenza mafiosa e sull’importanza di ricordare figure come Falcone e Borsellino.",
+      image: `${base}/storia.png`,
+      topic: "FASCISMO E NAZISMO",
+      text1: "Il libro denuncia il silenzio, la paura e le complicità che hanno favorito la mafia, mostrando una realtà storica dura e concreta. Nel corso del 2026 in storia abbiamo studiato il fascismo e il nazismo, analizzando le caratteristiche dei regimi totalitari, la propaganda, la limitazione delle libertà e le persecuzioni avvenute durante quel periodo storico."
+    },
+    {
+      id: "italiano",
+      title: "ITALIANO",
+      image: `${base}/help.png`,
+      topic: "LA PRIGIONE DOMESTICA",
+      text1: "Percorso dedicato all’analisi della violenza domestica e di genere attraverso dati, aspetti psicologici, conseguenze sociali e riferimenti al diritto e alla tutela delle vittime."
     },
     {
       id: "informatica",
       title: "INFORMATICA",
       image: `${base}/1522.png`,
-      topic: "1522",
-      text1: `Ho realizzato il progetto 1522 in quinta informatica utilizzando Python e Django.
-
-Si tratta di una piattaforma web pensata per fornire informazioni e supporto sul tema della violenza. Il sito permette all’utente di consultare diverse sezioni, inviare richieste di aiuto e accedere a contenuti utili.
-
-Grazie a questo progetto ho potuto mettere in pratica le mie conoscenze di programmazione web, gestione delle pagine, database e struttura di un’applicazione Django.`
-}, ];
+      topic: "PROGETTO 1522",
+      text1: "Ho realizzato il progetto 1522 in quinta informatica utilizzando Python e Django. Si tratta di una piattaforma web pensata per fornire informazioni e supporto sul tema della violenza. Il sito permette all’utente di consultare diverse sezioni, inviare richieste di aiuto e accedere a contenuti utili."
+    },
+  ];
 </script>
 
 <header class="header">
   <div class="top-bar">
     <h1 class="logo">2025 - 2026</h1>
   </div>
-
   <nav class="nav-links">
     {#each navLinks as link}
-      <button on:click={() => scrollToSection(link)}>
+      <button type="button" on:click={() => scrollToSection(link)}>
         {link}
       </button>
     {/each}
   </nav>
 </header>
 
-<main>
-  <section
-    class="hero"
-    style="background-image: url('{base}/front-scuola.jpeg');"
-  >
-    <div class="hero-overlay" bind:this={heroOverlay}>
-      {#each sections as section}
-        <section id={section.id} class="subject-section">
-          <article class="subject-card image-card">
-            <h2>{section.title}</h2>
-            <!-- L'animazione è gestita via CSS sulla classe .subject-img -->
-            <img
-              class="subject-img"
-              src={section.image}
-              alt={section.topic}
-            />
-          </article>
+<main class="wrapper">
+  {#each sections as section, i}
+    <section id={section.id} class="subject-section {i % 2 === 0 ? 'bg-white' : 'bg-sea-blue'}">
+      <div class="container">
+        
+        <div class="image-column">
+          <div class="image-wrapper">
+            <img src={section.image} alt={section.topic} class="profile-img" />
+            <div class="topic-tag">{section.topic}</div>
+          </div>
+        </div>
 
-          <article class="subject-card text-card">
-            <h2>{section.topic}</h2>
+        <div class="text-column">
+          <h2 class="section-title">{section.title}</h2>
+          <div class="text-content">
             <p>{section.text1}</p>
-            {#if section.text2}
-              <p>{section.text2}</p>
-            {/if}
-          </article>
-        </section>
-      {/each}
-    </div>
-  </section>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+  {/each}
 </main>
 
 <style>
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  :global(body) {
+  /* Reset globale per pulizia totale */
+  :global(html), :global(body) {
     margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #000;
-    color: white;
+    padding: 0;
+    background-color: white !important;
+    color: #333;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 
-  /* HEADER */
+  /* Header fisso */
   .header {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    position: sticky;
+    background: white;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  }
-
-  .top-bar {
-    height: 60px;
-    padding: 0 25px;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .lang {
-    color: black;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    background: #f0f0f0;
-    padding: 8px 14px;
-    border-radius: 20px;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
   }
 
   .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
-    color: black;
-    font-size: 24px;
+    text-align: center;
+    color: #4a3728;
+    font-size: 20px;
+    letter-spacing: 3px;
+    margin: 0 0 10px 0;
     font-weight: 800;
-    letter-spacing: 0.35em;
   }
 
   .nav-links {
     display: flex;
     justify-content: center;
-    gap: 18px;
-    padding: 12px 40px 18px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .nav-links::-webkit-scrollbar,
-  .hero-overlay::-webkit-scrollbar {
-    display: none;
+    gap: 20px;
   }
 
   .nav-links button {
-    color: black;
-    background: #eeeeee;
-    border: 1px solid transparent;
-    border-radius: 25px;
-    font-size: 10px;
+    background: none;
+    border: none;
     font-weight: 700;
-    letter-spacing: 0.14em;
-    padding: 10px 18px;
-    transition: all 0.3s ease;
+    font-size: 11px;
+    color: #888;
     cursor: pointer;
+    text-transform: uppercase;
+    transition: color 0.3s;
   }
 
   .nav-links button:hover {
-    background: black;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+    color: #4a3728;
   }
 
-  .nav-links button:active {
-    transform: scale(0.96);
+  /* Main content */
+  .wrapper {
+    margin-top: 100px; 
+    background-color: white;
   }
 
-  /* HERO */
-  .hero {
-    width: 100%;
-    height: calc(100vh - 118px);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
-
-  .hero-overlay {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: none;
-  }
-
-  /* SEZIONI */
   .subject-section {
+    padding: 100px 0;
+    min-height: 75vh;
     display: flex;
-    gap: 55px;
-    padding: 90px 100px;
-    min-height: 85vh;
     align-items: center;
-    scroll-margin-top: 120px;
   }
 
-  .subject-card {
-    box-sizing: border-box;
-  }
+  .bg-white { background-color: #ffffff; }
+  .bg-sea-blue { background-color: #f2f9fb; }
 
-  .image-card {
-    width: 58%;
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    padding: 0 40px;
   }
 
-  .text-card {
-    width: 42%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.55);
-    padding: 35px;
-    border-radius: 18px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+  .image-column {
+    flex: 1;
   }
 
-  .subject-card h2 {
-    margin: 0 0 22px;
-    font-size: 22px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    line-height: 1.3;
+  .image-wrapper {
+    position: relative;
+    z-index: 1;
   }
 
-  .subject-card p {
-    margin: 0 0 18px;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.9;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  /* IMMAGINI */
-  .subject-img {
+  .profile-img {
     width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 14px;
+    max-width: 420px;
+    /* Forma ritagliata come da foto */
+    border-bottom-left-radius: 150px 50px;
+    border-bottom-right-radius: 150px 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     display: block;
-    transition:
-      transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-      filter 0.3s ease;
+    /* Animazione fluida */
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
   }
 
-  .image-card:hover .subject-img {
-    transform: scale(1.03) translateY(-10px);
-    filter: brightness(1.1);
+  /* EFFETTO ZOOM E SOLLEVAMENTO */
+  .image-wrapper:hover .profile-img {
+    transform: scale(1.06) translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.12);
   }
 
-  /* MOBILE */
-  @media (max-width: 900px) {
-    .top-bar {
-      height: auto;
-      padding: 18px 20px;
+  .topic-tag {
+    position: absolute;
+    bottom: 20px;
+    right: -10px;
+    background: #4a3728;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    pointer-events: none; /* Non blocca l'hover dell'immagine */
+  }
+
+  .text-column {
+    flex: 1.2;
+  }
+
+  .section-title {
+    font-size: 45px;
+    color: #4a3728;
+    margin-bottom: 25px;
+    font-weight: 800;
+  }
+
+  .text-content p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #444;
+  }
+
+  /* Mobile */
+  @media (max-width: 850px) {
+    .container {
       flex-direction: column;
-      gap: 12px;
-    }
-
-    .logo {
-      position: static;
-      transform: none;
-      font-size: 20px;
       text-align: center;
+      padding: 60px 20px;
     }
-
-    .nav-links {
-      gap: 10px;
-      padding: 10px 15px 15px;
-      justify-content: flex-start;
+    .topic-tag {
+      position: relative;
+      right: 0;
+      margin-top: 20px;
+      display: inline-block;
     }
-
-    .nav-links button {
-      font-size: 9px;
-      padding: 9px 14px;
-    }
-
-    .hero {
-      height: calc(100vh - 145px);
-      background-attachment: scroll;
-    }
-
-    .subject-section {
-      flex-direction: column;
-      padding: 70px 20px;
-      gap: 30px;
-    }
-
-    .image-card,
-    .text-card {
-      width: 100%;
-    }
-
-    .text-card {
-      padding: 25px;
-    }
-
-    .subject-card h2 {
-      font-size: 18px;
-    }
-
-    .subject-card p {
-      font-size: 13px;
+    .section-title {
+      font-size: 32px;
     }
   }
 </style>
