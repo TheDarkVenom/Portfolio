@@ -8,6 +8,8 @@
     { label: "PROGETTO 1522", id: "progetto-1522" },
     { label: "IL MOVIMENTO DEL 68", id: "il-movimento-del-68" },
     { label: "LA COSTITUZIONE", id: "la-costituzione" },
+    { label: "LAGER", id: "il-lager" },
+    { label: "OPERAZIONE T4/LEBENSBORN", id: "operazione" }
   ];
 
   function scrollToSection(id) {
@@ -72,6 +74,23 @@
       topic: "IL MOVIMENTO DEL 68",
       text1: "Il movimento del ’68 fu un vasto movimento di contestazione contro il capitalismo e la società borghese. Coinvolse studenti, operai nelle fabbriche e anche detenuti nelle carceri, con richieste di maggiore libertà, uguaglianza e diritti sociali."
     },
+
+    {
+      id: "il-lager",
+      title: "LAGER",
+      image: `${base}/LAGER.png`,
+      topic: "LAGER",
+      text1: "Il termine 'Lager' significa letteralmente 'campo' o 'deposito' (magazzino). La scelta di questa parola non è casuale: il sistema fu progettato per “stoccare” esseri umani degradati a semplici pezzi da lavoro, privandoli di ogni dignità e di ogni status umano."
+    },
+
+    {
+      id: "operazione",
+      title: "OPERAZIONE T4/LEBENSBORN",
+      image: `${base}/operazione.png`,
+      topic: "OPERAZIONE T4/LEBENSBORN",
+      text1: "L’Operazione T4 e il progetto Lebensborn furono due programmi sviluppati dal regime nazista basati sull’ideologia della “purezza della razza”. L’Operazione T4 prevedeva l’eliminazione delle persone considerate malate o disabili, ritenute “inutili” per la società, mentre il progetto Lebensborn aveva l’obiettivo di favorire la nascita di bambini con caratteristiche considerate “ariane”. Entrambi mostrano come il nazismo controllasse la vita delle persone attraverso discriminazione, violenza e selezione umana."
+ },
+
   ];
 </script>
 
