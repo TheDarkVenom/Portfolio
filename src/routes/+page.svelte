@@ -45,7 +45,7 @@
   <main class="hero">
     <section class="hero-content">
       <p class="hero-tag">PORTFOLIO PROJECT</p>
-      <h1>Presentazione<br />del mio sito</h1>
+      <h1>EDUCAZIONE CIVICA</h1>
       <p class="hero-description">
         Questo sito rappresenta il mio percorso scolastico dalla terza alla
         quinta informatica. Ho raccolto progetti, competenze e lavori realizzati
@@ -259,7 +259,7 @@
   /* Sidebar Social */
   .social-sidebar {
     position: fixed;
-    right: 0;
+    right: 0; 
     top: 50%;
     transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.8);
