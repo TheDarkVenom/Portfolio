@@ -2,26 +2,27 @@
   import { base } from "$app/paths";
 
   const navLinks = [
-    "HOME",
-    "STORIA",
-    "ITALIANO",
-    "INFORMATICA",
+    { label: "HOME", id: "home" },
+    { label: "FASCISMO E NAZISMO", id: "fascismo-e-nazismo" },
+    { label: "LA PRIGIONE DOMESTICA", id: "la-prigione-domestica" },
+    { label: "PROGETTO 1522", id: "progetto-1522" },
+    { label: "IL MOVIMENTO DEL 68", id: "il-movimento-del-68" },
+    { label: "LA COSTITUZIONE", id: "la-costituzione" },
   ];
 
-  function scrollToSection(link) {
-    if (link === "HOME") {
-      // Ti rimanda alla pagina principale del sito
+  function scrollToSection(id) {
+    if (id === "home") {
       window.location.href = `${base}/`;
       return;
     }
 
-    const id = link.toLowerCase().replace(/ /g, "-");
     const section = document.getElementById(id);
 
     if (section) {
       const headerOffset = 100;
       const elementPosition = section.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
@@ -32,25 +33,44 @@
 
   const sections = [
     {
-      id: "storia",
+      id: "fascismo-e-nazismo",
       title: "STORIA",
       image: `${base}/storia.png`,
       topic: "FASCISMO E NAZISMO",
-      text1: "Il libro denuncia il silenzio, la paura e le complicità che hanno favorito la mafia, mostrando una realtà storica dura e concreta. Nel corso del 2026 in storia abbiamo studiato il fascismo e il nazismo, analizzando le caratteristiche dei regimi totalitari, la propaganda, la limitazione delle libertà e le persecuzioni avvenute durante quel periodo storico."
+      text1:
+        "Il libro denuncia il silenzio, la paura e le complicità che hanno favorito la mafia, mostrando una realtà storica dura e concreta. Nel corso del 2026 in storia abbiamo studiato il fascismo e il nazismo, analizzando le caratteristiche dei regimi totalitari, la propaganda, la limitazione delle libertà e le persecuzioni avvenute durante quel periodo storico."
     },
+
     {
-      id: "italiano",
+      id: "la-prigione-domestica",
       title: "ITALIANO",
       image: `${base}/help.png`,
       topic: "LA PRIGIONE DOMESTICA",
       text1: "Percorso dedicato all’analisi della violenza domestica e di genere attraverso dati, aspetti psicologici, conseguenze sociali e riferimenti al diritto e alla tutela delle vittime."
     },
+
     {
-      id: "informatica",
+      id: "progetto-1522",
       title: "INFORMATICA",
       image: `${base}/1522.png`,
       topic: "PROGETTO 1522",
       text1: "Ho realizzato il progetto 1522 in quinta informatica utilizzando Python e Django. Si tratta di una piattaforma web pensata per fornire informazioni e supporto sul tema della violenza. Il sito permette all’utente di consultare diverse sezioni, inviare richieste di aiuto e accedere a contenuti utili."
+    },
+
+    {
+      id: "la-costituzione",
+      title: "LA COSTITUZIONE",
+      image: `${base}/costituzione.png`,
+      topic: "LA COSTITUZIONE",
+      text1: "La Costituzione italiana è composta da 139 articoli e 18 disposizioni transitorie e finali. I primi dodici articoli contengono i principi fondamentali, cioè i valori più importanti a cui si ispira tutta la struttura della Costituzione e gli obiettivi a cui lo Stato deve tendere."
+    },
+
+    {
+      id: "il-movimento-del-68",
+      title: "IL MOVIMENTO DEL 68",
+      image: `${base}/68.png`,
+      topic: "IL MOVIMENTO DEL 68",
+      text1: "Il movimento del ’68 fu un vasto movimento di contestazione contro il capitalismo e la società borghese. Coinvolse studenti, operai nelle fabbriche e anche detenuti nelle carceri, con richieste di maggiore libertà, uguaglianza e diritti sociali."
     },
   ];
 </script>
@@ -59,10 +79,14 @@
   <div class="top-bar">
     <h1 class="logo">2025 - 2026</h1>
   </div>
+
   <nav class="nav-links">
     {#each navLinks as link}
-      <button type="button" on:click={() => scrollToSection(link)}>
-        {link}
+      <button
+        type="button"
+        on:click={() => scrollToSection(link.id)}
+      >
+        {link.label}
       </button>
     {/each}
   </nav>
@@ -70,28 +94,38 @@
 
 <main class="wrapper">
   {#each sections as section, i}
-    <section id={section.id} class="subject-section {i % 2 === 0 ? 'bg-white' : 'bg-sea-blue'}">
+    <section
+      id={section.id}
+      class="subject-section {i % 2 === 0 ? 'bg-white' : 'bg-sea-blue'}"
+    >
       <div class="container">
-        
+
         <div class="image-column">
           <div class="image-wrapper">
-            <img src={section.image} alt={section.topic} class="profile-img" />
-            <div class="topic-tag">{section.topic}</div>
+            <img
+              src={section.image}
+              alt={section.topic}
+              class="profile-img"
+            />
+
+            <div class="topic-tag">
+              {section.topic}
+            </div>
           </div>
         </div>
 
         <div class="text-column">
           <h2 class="section-title">{section.title}</h2>
+
           <div class="text-content">
             <p>{section.text1}</p>
           </div>
         </div>
-        
+
       </div>
     </section>
   {/each}
 </main>
-
 <style>
   /* Reset globale per pulizia totale */
   :global(html), :global(body) {
