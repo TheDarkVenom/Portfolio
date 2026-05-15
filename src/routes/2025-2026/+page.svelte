@@ -9,7 +9,7 @@
     { label: "IL MOVIMENTO DEL 68", id: "il-movimento-del-68" },
     { label: "LA COSTITUZIONE", id: "la-costituzione" },
     { label: "LAGER", id: "il-lager" },
-    { label: "OPERAZIONE T4/LEBENSBORN", id: "operazione" }
+    { label: "OPERAZIONE T4/LEBENSBORN", id: "operazione" },
   ];
 
   function scrollToSection(id) {
@@ -28,11 +28,19 @@
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   }
-
+  const articoli = [
+    { id: 1, titolo: "Articolo 1" },
+    { id: 2, titolo: "Articolo 2" },
+    { id: 3, titolo: "Articolo 3" },
+    { id: 4, titolo: "Articolo 4" },
+    { id: 5, titolo: "Articolo 5-9" },
+    { id: 10, titolo: "Articolo 10-11" },
+    { id: 12, titolo: "Articolo 12" },
+  ];
   const sections = [
     {
       id: "fascismo-e-nazismo",
@@ -40,7 +48,7 @@
       image: `${base}/storia.png`,
       topic: "FASCISMO E NAZISMO",
       text1:
-        "Il libro denuncia il silenzio, la paura e le complicità che hanno favorito la mafia, mostrando una realtà storica dura e concreta. Nel corso del 2026 in storia abbiamo studiato il fascismo e il nazismo, analizzando le caratteristiche dei regimi totalitari, la propaganda, la limitazione delle libertà e le persecuzioni avvenute durante quel periodo storico."
+        "Il libro denuncia il silenzio, la paura e le complicità che hanno favorito la mafia, mostrando una realtà storica dura e concreta. Nel corso del 2026 in storia abbiamo studiato il fascismo e il nazismo, analizzando le caratteristiche dei regimi totalitari, la propaganda, la limitazione delle libertà e le persecuzioni avvenute durante quel periodo storico.",
     },
 
     {
@@ -48,7 +56,8 @@
       title: "ITALIANO",
       image: `${base}/help.png`,
       topic: "LA PRIGIONE DOMESTICA",
-      text1: "Percorso dedicato all’analisi della violenza domestica e di genere attraverso dati, aspetti psicologici, conseguenze sociali e riferimenti al diritto e alla tutela delle vittime."
+      text1:
+        "Percorso dedicato all’analisi della violenza domestica e di genere attraverso dati, aspetti psicologici, conseguenze sociali e riferimenti al diritto e alla tutela delle vittime.",
     },
 
     {
@@ -56,7 +65,8 @@
       title: "INFORMATICA",
       image: `${base}/1522.png`,
       topic: "PROGETTO 1522",
-      text1: "Ho realizzato il progetto 1522 in quinta informatica utilizzando Python e Django. Si tratta di una piattaforma web pensata per fornire informazioni e supporto sul tema della violenza. Il sito permette all’utente di consultare diverse sezioni, inviare richieste di aiuto e accedere a contenuti utili."
+      text1:
+        "Ho realizzato il progetto 1522 in quinta informatica utilizzando Python e Django. Si tratta di una piattaforma web pensata per fornire informazioni e supporto sul tema della violenza. Il sito permette all’utente di consultare diverse sezioni, inviare richieste di aiuto e accedere a contenuti utili.",
     },
 
     {
@@ -64,7 +74,8 @@
       title: "LA COSTITUZIONE",
       image: `${base}/costituzione.png`,
       topic: "LA COSTITUZIONE",
-      text1: "La Costituzione italiana è composta da 139 articoli e 18 disposizioni transitorie e finali. I primi dodici articoli contengono i principi fondamentali, cioè i valori più importanti a cui si ispira tutta la struttura della Costituzione e gli obiettivi a cui lo Stato deve tendere."
+      text1:
+        "La Costituzione italiana è composta da 139 articoli e 18 disposizioni transitorie e finali. I primi dodici articoli contengono i principi fondamentali, cioè i valori più importanti a cui si ispira tutta la struttura della Costituzione e gli obiettivi a cui lo Stato deve tendere.",
     },
 
     {
@@ -72,7 +83,8 @@
       title: "IL MOVIMENTO DEL 68",
       image: `${base}/68.png`,
       topic: "IL MOVIMENTO DEL 68",
-      text1: "Il movimento del ’68 fu un vasto movimento di contestazione contro il capitalismo e la società borghese. Coinvolse studenti, operai nelle fabbriche e anche detenuti nelle carceri, con richieste di maggiore libertà, uguaglianza e diritti sociali."
+      text1:
+        "Il movimento del ’68 fu un vasto movimento di contestazione contro il capitalismo e la società borghese. Coinvolse studenti, operai nelle fabbriche e anche detenuti nelle carceri, con richieste di maggiore libertà, uguaglianza e diritti sociali.",
     },
 
     {
@@ -80,7 +92,8 @@
       title: "LAGER",
       image: `${base}/LAGER.png`,
       topic: "LAGER",
-      text1: "Il termine 'Lager' significa letteralmente 'campo' o 'deposito' (magazzino). La scelta di questa parola non è casuale: il sistema fu progettato per “stoccare” esseri umani degradati a semplici pezzi da lavoro, privandoli di ogni dignità e di ogni status umano."
+      text1:
+        "Il termine 'Lager' significa letteralmente 'campo' o 'deposito' (magazzino). La scelta di questa parola non è casuale: il sistema fu progettato per “stoccare” esseri umani degradati a semplici pezzi da lavoro, privandoli di ogni dignità e di ogni status umano.",
     },
 
     {
@@ -88,9 +101,9 @@
       title: "OPERAZIONE T4/LEBENSBORN",
       image: `${base}/operazione.png`,
       topic: "OPERAZIONE T4/LEBENSBORN",
-      text1: "L’Operazione T4 e il progetto Lebensborn furono due programmi sviluppati dal regime nazista basati sull’ideologia della “purezza della razza”. L’Operazione T4 prevedeva l’eliminazione delle persone considerate malate o disabili, ritenute “inutili” per la società, mentre il progetto Lebensborn aveva l’obiettivo di favorire la nascita di bambini con caratteristiche considerate “ariane”. Entrambi mostrano come il nazismo controllasse la vita delle persone attraverso discriminazione, violenza e selezione umana."
- },
-
+      text1:
+        "L’Operazione T4 e il progetto Lebensborn furono due programmi sviluppati dal regime nazista basati sull’ideologia della “purezza della razza”. L’Operazione T4 prevedeva l’eliminazione delle persone considerate malate o disabili, ritenute “inutili” per la società, mentre il progetto Lebensborn aveva l’obiettivo di favorire la nascita di bambini con caratteristiche considerate “ariane”. Entrambi mostrano come il nazismo controllasse la vita delle persone attraverso discriminazione, violenza e selezione umana.",
+    },
   ];
 </script>
 
@@ -101,10 +114,7 @@
 
   <nav class="nav-links">
     {#each navLinks as link}
-      <button
-        type="button"
-        on:click={() => scrollToSection(link.id)}
-      >
+      <button type="button" on:click={() => scrollToSection(link.id)}>
         {link.label}
       </button>
     {/each}
@@ -118,14 +128,9 @@
       class="subject-section {i % 2 === 0 ? 'bg-white' : 'bg-sea-blue'}"
     >
       <div class="container">
-
         <div class="image-column">
           <div class="image-wrapper">
-            <img
-              src={section.image}
-              alt={section.topic}
-              class="profile-img"
-            />
+            <img src={section.image} alt={section.topic} class="profile-img" />
 
             <div class="topic-tag">
               {section.topic}
@@ -138,23 +143,37 @@
 
           <div class="text-content">
             <p>{section.text1}</p>
+
+            {#if section.id === "la-costituzione"}
+              <div class="articles-grid">
+                {#each articoli as articolo}
+                  <a
+                    href="{base}/2025-2026/costituzione/{articolo.id}"
+                    class="article-btn"
+                  >
+                    {articolo.titolo}
+                  </a>
+                {/each}
+              </div>
+            {/if}
           </div>
         </div>
-
       </div>
     </section>
   {/each}
 </main>
+
 <style>
   /* Reset globale per pulizia totale */
-  :global(html), :global(body) {
+  :global(html),
+  :global(body) {
     margin: 0;
     padding: 0;
     background-color: white !important;
     color: #333;
     overflow-x: hidden;
     overflow-y: auto;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
 
   /* Header fisso */
@@ -168,7 +187,34 @@
     border-bottom: 1px solid #eee;
     padding: 15px 0;
   }
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 35px;
+  }
 
+  .article-btn {
+    background: #4a3728;
+    color: white;
+    text-decoration: none;
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+
+  .article-btn:hover {
+    background: #6b4e3b;
+    transform: translateY(-4px);
+  }
+
+  @media (max-width: 700px) {
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
   .logo {
     text-align: center;
     color: #4a3728;
@@ -201,7 +247,7 @@
 
   /* Main content */
   .wrapper {
-    margin-top: 100px; 
+    margin-top: 100px;
     background-color: white;
   }
 
@@ -212,8 +258,12 @@
     align-items: center;
   }
 
-  .bg-white { background-color: #ffffff; }
-  .bg-sea-blue { background-color: #f2f9fb; }
+  .bg-white {
+    background-color: #ffffff;
+  }
+  .bg-sea-blue {
+    background-color: #f2f9fb;
+  }
 
   .container {
     max-width: 1100px;
@@ -239,16 +289,18 @@
     /* Forma ritagliata come da foto */
     border-bottom-left-radius: 150px 50px;
     border-bottom-right-radius: 150px 50px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     display: block;
     /* Animazione fluida */
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+    transition:
+      transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      box-shadow 0.4s ease;
   }
 
   /* EFFETTO ZOOM E SOLLEVAMENTO */
   .image-wrapper:hover .profile-img {
     transform: scale(1.06) translateY(-12px);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
   }
 
   .topic-tag {
@@ -262,7 +314,7 @@
     font-size: 13px;
     font-weight: bold;
     text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     pointer-events: none; /* Non blocca l'hover dell'immagine */
   }
 
