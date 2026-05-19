@@ -1,6 +1,7 @@
 <script>
   import { base } from "$app/paths";
 
+
   const navLinks = [
     { label: "HOME", id: "home" },
     { label: "FASCISMO E NAZISMO", id: "fascismo-e-nazismo" },
@@ -32,15 +33,7 @@
       });
     }
   }
-  const articoli = [
-    { id: 1, titolo: "Articolo 1" },
-    { id: 2, titolo: "Articolo 2" },
-    { id: 3, titolo: "Articolo 3" },
-    { id: 4, titolo: "Articolo 4" },
-    { id: 5, titolo: "Articolo 5-9" },
-    { id: 10, titolo: "Articolo 10-11" },
-    { id: 12, titolo: "Articolo 12" },
-  ];
+  const listaId = ["1", "2", "3", "4", "5-9", "10", "11", "12"];
   const sections = [
     {
       id: "fascismo-e-nazismo",
@@ -146,12 +139,12 @@
 
             {#if section.id === "la-costituzione"}
               <div class="articles-grid">
-                {#each articoli as articolo}
+                {#each listaId as id}
                   <a
-                    href="{base}/2025-2026/costituzione/{articolo.id}"
                     class="article-btn"
+                    href="{base}/2025-2026/costituzione/{id}"
                   >
-                    {articolo.titolo}
+                    {id}
                   </a>
                 {/each}
               </div>
